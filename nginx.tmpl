@@ -81,12 +81,19 @@ upstream {{ $host }} {
 {{/* Use the cert specifid on the container or fallback to the best vhost match */}}
 {{ $cert := (coalesce $certName $vhostCert) }}
 
-{{ if (and (ne $cert "") (exists (printf "/etc/nginx/certs/%s.crt" $cert)) (exists (printf "/etc/nginx/certs/%s.key" $cert))) }}
-
 server {
 	server_name {{ $host }};
-	rewrite ^(.*) https://{{ $host }}$1 permanent;
+
+	location / {
+		proxy_pass http://{{ $host }};
+		{{ if (exists (printf "/etc/nginx/htpasswd/%s" $host)) }}
+		auth_basic	"Restricted {{ $host }}";
+		auth_basic_user_file	{{ (printf "/etc/nginx/htpasswd/%s" $host) }};
+		{{ end }}
+	}
 }
+
+{{ if (and (ne $cert "") (exists (printf "/etc/nginx/certs/%s.crt" $cert)) (exists (printf "/etc/nginx/certs/%s.key" $cert))) }}
 
 server {
 	server_name {{ $host }};
@@ -111,18 +118,6 @@ server {
 	}
 }
 {{ else }}
-
-server {
-	server_name {{ $host }};
-
-	location / {
-		proxy_pass http://{{ $host }};
-		{{ if (exists (printf "/etc/nginx/htpasswd/%s" $host)) }}
-		auth_basic	"Restricted {{ $host }}";
-		auth_basic_user_file	{{ (printf "/etc/nginx/htpasswd/%s" $host) }};
-		{{ end }}
-	}
-}
 
 server {
 	server_name {{ $host }};
