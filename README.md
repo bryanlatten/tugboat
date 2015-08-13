@@ -14,7 +14,7 @@ Allows tugboat to serve HTTPS traffic and be trusted by the browser
 6. Expand the 'Trust' section, change the 'When using this certificate' dropdown to say 'Always Trust'
 7. Close properties panel, which will save that selection
 8. Firefox does *not* use these certificates, so it has to be added manually.
-  - Firefox > Preferences > Advanced > View Certificates > Import > `{path_to_tugboat}/certs/ca.pem`
+  - Firefox > Preferences > Advanced > View Certificates > Authorities > Import > `{path_to_tugboat}/certs/ca.pem`
   - Check 'Trust for websites'
   - Click OK
 
