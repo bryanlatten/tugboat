@@ -7,8 +7,8 @@
 Allows tugboat to serve HTTPS traffic and be trusted by the browser
 
 1. Open 'Keychain Access' (Application > Utilities > Keychain Access)
-2. On the left, select 'System' from Keychains, select 'Certificates' from Category
-3. Select File > Import Items, choose `{path_to_tugboat}/certs/ca.pem`
+2. On the left, select 'System' from Keychains, select 'Certificates' from Category 
+3. Select File > Import Items, choose `{path_to_tugboat}/certs/ca.pem` *
 4. Enter password whenever prompted
 5. 'Behance Dev' should now be in the list of certificates. Double click it to open a properties panel
 6. Expand the 'Trust' section, change the 'When using this certificate' dropdown to say 'Always Trust'
@@ -18,3 +18,5 @@ Allows tugboat to serve HTTPS traffic and be trusted by the browser
   - Check 'Trust for websites'
   - Click OK
 
+
+* If you get error -25294 while importing the Cert to your 'System' / 'Certificates', import it under 'login' keychains
