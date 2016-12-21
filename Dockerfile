@@ -1,4 +1,4 @@
-FROM jwilder/nginx-proxy:0.2.0
+FROM jwilder/nginx-proxy:0.5.0
 MAINTAINER Sean Dunn <sedunn@adobe.com>
 
 COPY ./nginx.tmpl /app/nginx.tmpl
