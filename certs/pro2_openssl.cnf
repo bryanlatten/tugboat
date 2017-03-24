@@ -123,7 +123,8 @@ input_password = password
 # WARNING: ancient versions of Netscape crash on BMPStrings or UTF8Strings.
 string_mask = utf8only
 
-# req_extensions = v3_req # The extensions to add to a certificate request
+# The extensions to add to a certificate request
+req_extensions = v3_req
 
 [ req_distinguished_name ]
 countryName                     = Country Name (2 letter code)
@@ -155,7 +156,6 @@ emailAddress_default            = none@none.com
 emailAddress_max                = 64
 
 # SET-ex3                       = SET extension number 3
-subjectAltName = alt_names
 
 
 [ req_attributes ]
@@ -226,6 +226,7 @@ unstructuredName                = An optional company name
 # Leave it false since we're not the CA
 basicConstraints = CA:FALSE
 keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+subjectAltName = @alt_names
 
 [ v3_ca ]
 
