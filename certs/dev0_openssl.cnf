@@ -6,7 +6,7 @@
 # This definition stops the following lines choking if HOME isn't
 # defined.
 HOME                    = .
-use_this_hostname       = pro2.dev0.be.lan
+use_this_hostname       = dev0.be.lan
 # RANDFILE                = $ENV::HOME/.rnd
 
 # Extra OBJECT IDENTIFIER info:
